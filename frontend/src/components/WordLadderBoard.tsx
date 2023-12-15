@@ -1,10 +1,19 @@
+import { IGameState } from "@/game/reducer";
 import WordBoardRow from "./WordBoardRow";
 
-export default function WordLadderBoard() {
+export default function WordLadderBoard(props: IGameState) {
     return (
         <div>
-            <WordBoardRow isGuessed={false} guess={"Holas"} word={"Malok"} />
-            <WordBoardRow isGuessed={true} guess={"Holas"} word={"Malok"} />
+             {
+                props.inputWords.map((_, i) => (
+                    <WordBoardRow
+                    key={i}
+                    targetWord={props.targetWord}
+                    inputWord={props.inputWords[i]}
+                    isGuessed={i < props.currentIndex}
+                    />
+                ))
+             }
         </div>
     )
 }
