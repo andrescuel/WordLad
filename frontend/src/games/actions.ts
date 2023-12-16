@@ -7,8 +7,8 @@ export const startGame = (): IAction => ({
     type: 'START_GAME',
 })
 
-export const submitGuess = (): IAction => ({
-    type: 'SUBMIT_GUESS',
+export const submitWord = (): IAction => ({
+    type: 'SUBMIT_WORD',
 })
 
 export const handleKeyup = (key: string): IAction => ({

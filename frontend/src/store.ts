@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import gameReducer from './game/reducer'
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import wordleReducer from "./games/wordle/reducer";
 
 export const rootReducer = combineReducers({
-    game: gameReducer
-})
+  wordle: wordleReducer,
+});
 
 const store = configureStore({
-    reducer: rootReducer
-})
+  reducer: rootReducer,
+});
 
-export type IRootState = ReturnType<typeof rootReducer>
+export type RootState = ReturnType<typeof rootReducer>;
 
-export default store
+export default store;
