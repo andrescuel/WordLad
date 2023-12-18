@@ -32,7 +32,6 @@ const gridsBgColor = (inputWord: string, targetWord: string): string[] => {
 }
 
 export default function WordleRow(props: IRowProps) {
-    console.log(props.targetWord)
     const bgColors = gridsBgColor(props.inputWord, props.targetWord)
     return (
         <div className="grid grid-cols-5 gap-1.5">

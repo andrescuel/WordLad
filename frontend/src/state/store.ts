@@ -1,8 +1,8 @@
 "use client";
 
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import wordleReducer from "./games/wordle/reducer";
-import coreReducer from "./core/reducer";
+import coreReducer from "./core/coreSlice";
+import wordleReducer from "./games/wordleSlice";
 
 export const rootReducer = combineReducers({
   wordle: wordleReducer,

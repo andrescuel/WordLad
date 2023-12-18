@@ -3,23 +3,29 @@
 import WordleRow from "./WordleRow";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/state/store";
-import { selectLost, selectWon } from "@/state/games/wordle/selectors";
-import { handleKeyup, startGame } from "@/state/games/actions";
+import {
+  handleKeyUp,
+  newGame,
+  selectCurrentIndex,
+  selectInputWords,
+  selectLost,
+  selectTargetWord,
+  selectWon,
+} from "@/state/games/wordleSlice";
 
 export default function WordleBoard() {
   const dispatch = useDispatch();
-  const { targetWord, inputWords, currentIndex } = useSelector(
-    (state: RootState) => state.wordle
-  );
   const won = useSelector(selectWon);
   const lost = useSelector(selectLost);
+  const targetWord = useSelector(selectTargetWord);
+  const inputWords = useSelector(selectInputWords);
+  const currentIndex = useSelector(selectCurrentIndex);
 
   useEffect(() => {
-    dispatch(startGame());
+    dispatch(newGame());
 
     const handleKeyUpListener = (event: KeyboardEvent) => {
-      dispatch(handleKeyup(event.key));
+      dispatch(handleKeyUp(event.key));
     };
 
     window.addEventListener("keyup", handleKeyUpListener);
@@ -31,7 +37,8 @@ export default function WordleBoard() {
 
   return (
     <div className="grid grid-rows-5 gap-1.5 p-5">
-      {inputWords.map((_, i) => (
+      {
+      inputWords.map((_, i) => (
         <WordleRow
           key={i}
           targetWord={targetWord}
