@@ -1,7 +1,4 @@
-export interface IAction {
-    type: string
-    [key: string]: any;
-}
+import { IAction } from "../IAction"
 
 export const startGame = (): IAction => ({
     type: 'START_GAME',

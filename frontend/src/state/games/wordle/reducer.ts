@@ -1,12 +1,12 @@
-import { IAction } from "../actions";
+import { IAction } from "@/state/IAction";
 import { selectLost, selectWon } from "./selectors";
-import words from "../../words.json";
+import words from "../../../words.json";
 
 export type WordleState = {
-  targetWord: string
-  inputWords: string[]
-  currentIndex: number
-}
+  targetWord: string;
+  inputWords: string[];
+  currentIndex: number;
+};
 
 const initialState: WordleState = {
   targetWord: "",
@@ -25,7 +25,7 @@ const wordleReducer = (state = initialState, action: IAction): WordleState => {
         currentIndex: 0,
       };
 
-      // TODO: Implement submit word logic in the Wordle component
+    // TODO: Implement submit word logic in the Wordle component
     case "SUBMIT_WORD":
       return {
         ...state,
@@ -35,7 +35,7 @@ const wordleReducer = (state = initialState, action: IAction): WordleState => {
       };
 
     case "HANDLE_KEYUP":
-      if (currentIndex < 6 && !selectWon(state) && !selectLost(state)) {
+      if (!selectLost(state) && !selectWon(state)) {
         // Logic for 'Enter' key
         if (action.payload === "Enter") {
           return {

@@ -35,7 +35,7 @@ export default function WordleRow(props: IRowProps) {
     console.log(props.targetWord)
     const bgColors = gridsBgColor(props.inputWord, props.targetWord)
     return (
-        <div className="grid grid-cols-5 gap-2 mb-2">
+        <div className="grid grid-cols-5 gap-1.5">
             {
                 new Array(5).fill(0).map((_, i) => {
                     const bgColor = !props.isGuessed
@@ -43,7 +43,7 @@ export default function WordleRow(props: IRowProps) {
                     : bgColors[i]
 
                     const borderColor = !props.isGuessed
-                    ? 'border-gray-700'
+                    ? 'border-zinc-800'
                     : 'border-black'
 
                     return LetterGrid(props.inputWord[i], bgColor, borderColor)
