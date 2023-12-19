@@ -1,5 +1,3 @@
-"use client"
-
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import words from "../../words.json";
 import { RootState } from "../store";

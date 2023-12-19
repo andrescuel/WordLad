@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 export const coreSlice = createSlice({
   name: "core",
@@ -17,6 +18,8 @@ export const coreSlice = createSlice({
 });
 
 const coreReducer = coreSlice.reducer;
+
+export const selectLangDropdown = (state: RootState) => state.core.langDropdown
 
 export const { changeLangDropdown } = coreSlice.actions;
 
