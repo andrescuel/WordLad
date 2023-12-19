@@ -1,15 +1,8 @@
-'use client'
-
-import { useState } from "react";
 import LangDropdown from "./LangDropdown";
+import Link from "next/link";
+import { CiGrid41, CiLineHeight } from "react-icons/ci";
 
 export default function Navbar() {
-  const [language, setLanguage] = useState("EN"); // Default language
-
-  const handleLanguageChange = (newLanguage: string) => {
-    setLanguage(newLanguage);
-  };
-
   return (
     <header className="flex min-w-full justify-between p-4 border-b border-stone-900">
       <div id="headerLeft">
@@ -20,8 +13,19 @@ export default function Navbar() {
           WordLad
         </h1>
       </div>
-      <div id="headerRight">
-        right
+      <div id="headerRight" className="flex">
+        <Link
+          href="/wordle"
+          className="text-orange-300 hover:text-white duration-300"
+        >
+          <CiGrid41 size="35" />
+        </Link>
+        <Link
+          href="/wordladder"
+          className="text-orange-300 hover:text-white duration-300"
+        >
+          <CiLineHeight size="35" />
+        </Link>
       </div>
     </header>
   );
