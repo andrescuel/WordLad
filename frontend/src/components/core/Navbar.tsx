@@ -1,32 +1,76 @@
-import LangDropdown from "./LangDropdown";
-import Link from "next/link";
-import { CiGrid41, CiLineHeight } from "react-icons/ci";
+"use client";
 
-export default function Navbar() {
+import {
+  NavbarBrand,
+  NavbarContent,
+  Navbar,
+  Button,
+  Tooltip,
+} from "@nextui-org/react";
+import { FiSettings } from "react-icons/fi";
+import { LuInfo } from "react-icons/lu";
+import { BiBarChartAlt2 } from "react-icons/bi";
+import { PiLadderSimpleBold } from "react-icons/pi";
+import { MdOutlineGridOn } from "react-icons/md";
+import LangDropdown from "./LangDropdown";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+
+export default function MyNavbar() {
+  const pathName = usePathname();
+
   return (
-    <header className="flex min-w-full justify-between p-4 border-b border-stone-900">
-      <div id="headerLeft">
+    <Navbar
+      position="static"
+      isBordered={true}
+      maxWidth="sm"
+      className="shadow-md"
+    >
+      <NavbarContent justify="start" className="w-1/3">
         <LangDropdown />
-      </div>
-      <div id="headerTitle">
-        <h1 className="text-4xl font-bold uppercase text-transparent bg-clip-text bg-gradient-to-br from-yellow-400 to-orange-500">
-          WordLad
-        </h1>
-      </div>
-      <div id="headerRight" className="flex">
-        <Link
-          href="/wordle"
-          className="text-orange-300 hover:text-white duration-300"
-        >
-          <CiGrid41 size="35" />
-        </Link>
-        <Link
-          href="/wordladder"
-          className="text-orange-300 hover:text-white duration-300"
-        >
-          <CiLineHeight size="35" />
-        </Link>
-      </div>
-    </header>
+        <Tooltip placement="bottom" content="Info">
+          <Button isIconOnly variant="flat" aria-label="info">
+            <LuInfo size="24" />
+          </Button>
+        </Tooltip>
+      </NavbarContent>
+      <NavbarBrand className="uppercase text-2xl font-bold w-1/3 items-center justify-center flex">
+        WordLad
+      </NavbarBrand>
+      <NavbarContent justify="end" className="w-1/3">
+        {pathName !== "/wordladder" ? (
+          <Tooltip placement="bottom" content="Word Ladder">
+            <Link href="wordladder">
+              <Button isIconOnly variant="flat" aria-label="Word Ladder">
+                <PiLadderSimpleBold size="24" />
+              </Button>
+            </Link>
+          </Tooltip>
+        ) : null}
+        {pathName !== "/wordle" ? (
+          <Tooltip placement="bottom" content="Wordle">
+            <Link href="/wordle">
+              <Button isIconOnly variant="flat" aria-label="Wordle">
+                <MdOutlineGridOn size="24" />
+              </Button>
+            </Link>
+          </Tooltip>
+        ) : null}
+        {pathName === "/wordle" || pathName === "/wordladder" ? (
+          <Tooltip placement="bottom" content="Stats">
+            <Button isIconOnly variant="flat" aria-label="stats">
+              <BiBarChartAlt2 size="24" />
+            </Button>
+          </Tooltip>
+        ) : null}
+        {pathName === "/wordle" || pathName === "/wordladder" ? (
+          <Tooltip placement="bottom" content="Settings">
+            <Button isIconOnly variant="flat" aria-label="settings">
+              <FiSettings size="24" />
+            </Button>
+          </Tooltip>
+        ) : null}
+      </NavbarContent>
+    </Navbar>
   );
 }

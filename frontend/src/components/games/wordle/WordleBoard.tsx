@@ -15,8 +15,6 @@ import {
 
 export default function WordleBoard() {
   const dispatch = useDispatch();
-  const won = useSelector(selectWon);
-  const lost = useSelector(selectLost);
   const targetWord = useSelector(selectTargetWord);
   const inputWords = useSelector(selectInputWords);
   const currentIndex = useSelector(selectCurrentIndex);
@@ -35,10 +33,11 @@ export default function WordleBoard() {
     };
   }, [dispatch]);
 
+  console.log(targetWord);
   return (
     <div className="grid grid-rows-5 gap-1.5 p-5">
-      {
-      inputWords.map((_, i) => (
+      
+      {inputWords.map((_, i) => (
         <WordleRow
           key={i}
           targetWord={targetWord}

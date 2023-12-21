@@ -5,6 +5,8 @@ export const coreSlice = createSlice({
   name: "core",
   initialState: {
     langDropdown: false,
+    winModal: false,
+    loseModal: false,
   },
   reducers: {
     changeLangDropdown: (state) => {
@@ -13,7 +15,7 @@ export const coreSlice = createSlice({
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes (docs)
       state.langDropdown = !state.langDropdown;
-    },
+    }
   },
 });
 

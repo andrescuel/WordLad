@@ -51,12 +51,8 @@ const wordleReducer = wordleSlice.reducer;
 
 export const selectTargetWord = (state: RootState) => state.wordle.targetWord;
 export const selectInputWords = (state: RootState) => state.wordle.inputWords;
-export const selectCurrentIndex = (state: RootState) => state.wordle.currentIndex;
-
-export const selectLost = createSelector(
-  selectCurrentIndex,
-  (index) => index >= 6
-);
+export const selectCurrentIndex = (state: RootState) =>
+  state.wordle.currentIndex;
 
 export const selectWon = createSelector(
   [selectTargetWord, selectInputWords, selectCurrentIndex],
@@ -64,6 +60,11 @@ export const selectWon = createSelector(
     currentIndex > 0 && inputWords[currentIndex - 1] === targetWord
 );
 
-export const { newGame, submitWord, handleKeyUp } = wordleSlice.actions
+export const selectLost = createSelector(
+  [selectCurrentIndex, selectWon],
+  (index, won) => index >= 6 && !won
+);
+
+export const { newGame, submitWord, handleKeyUp } = wordleSlice.actions;
 
 export default wordleReducer;

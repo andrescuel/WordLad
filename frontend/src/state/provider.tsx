@@ -3,7 +3,12 @@
 import { Provider } from "react-redux";
 import { ReactNode } from "react";
 import store from "./store";
+import { NextUIProvider } from "@nextui-org/react";
 
 export default function Providers({ children }: { children: ReactNode }) {
-  return <Provider store={store}>{children}</Provider>;
+  return (
+    <NextUIProvider>
+      <Provider store={store}>{children}</Provider>
+    </NextUIProvider>
+  );
 }
