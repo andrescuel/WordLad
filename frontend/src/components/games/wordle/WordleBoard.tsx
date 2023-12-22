@@ -8,9 +8,8 @@ import {
   newGame,
   selectCurrentIndex,
   selectInputWords,
-  selectLost,
   selectTargetWord,
-  selectWon,
+  submitWord,
 } from "@/state/games/wordleSlice";
 
 export default function WordleBoard() {
@@ -23,7 +22,11 @@ export default function WordleBoard() {
     dispatch(newGame());
 
     const handleKeyUpListener = (event: KeyboardEvent) => {
-      dispatch(handleKeyUp(event.key));
+      if (event.key === "Enter") {
+        dispatch(submitWord());
+      } else {
+        dispatch(handleKeyUp(event.key));
+      }
     };
 
     window.addEventListener("keyup", handleKeyUpListener);
@@ -36,7 +39,6 @@ export default function WordleBoard() {
   console.log(targetWord);
   return (
     <div className="grid grid-rows-5 gap-1.5 p-5">
-      
       {inputWords.map((_, i) => (
         <WordleRow
           key={i}

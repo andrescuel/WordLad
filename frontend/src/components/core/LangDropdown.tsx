@@ -1,18 +1,21 @@
 "use client";
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@nextui-org/react";
+import { LanguageButton } from "./LanguageButton";
 
 export default function LangDropdown() {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button 
-          variant="flat" 
-          className="capitalize font-bold"
-        >
-          ES
-        </Button>
+        <LanguageButton aria-label="language">
+          <span>ES</span>
+        </LanguageButton>
       </DropdownTrigger>
-      <DropdownMenu 
+      <DropdownMenu
         variant="flat"
         disallowEmptySelection
         selectionMode="single"

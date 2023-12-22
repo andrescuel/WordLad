@@ -4,11 +4,16 @@ import { Provider } from "react-redux";
 import { ReactNode } from "react";
 import store from "./store";
 import { NextUIProvider } from "@nextui-org/react";
+import { ThemeProvider } from "next-themes";
 
 export default function Providers({ children }: { children: ReactNode }) {
   return (
-    <NextUIProvider>
-      <Provider store={store}>{children}</Provider>
-    </NextUIProvider>
+    <Provider store={store}>
+      <NextUIProvider className="min-h-screen">
+        <ThemeProvider attribute="class" defaultTheme="light">
+          {children}
+        </ThemeProvider>
+      </NextUIProvider>
+    </Provider>
   );
 }

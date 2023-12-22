@@ -16,9 +16,11 @@ export const wordleSlice = createSlice({
       state.currentIndex = 0;
     },
     submitWord: (state) => {
-      state.currentIndex += words.includes(state.inputWords[state.currentIndex])
-        ? 1
-        : 0;
+      state.currentIndex +=
+        words.includes(state.inputWords[state.currentIndex]) &&
+        state.inputWords[state.currentIndex].length === 5
+          ? 1
+          : 0;
     },
     handleKeyUp: (state, action) => {
       const won =
@@ -27,9 +29,7 @@ export const wordleSlice = createSlice({
       const lost = state.currentIndex >= 6;
 
       if (true) {
-        if (action.payload === "Enter") {
-          state.currentIndex += 1;
-        } else if (
+        if (
           action.payload === "Backspace" &&
           state.inputWords[state.currentIndex].length > 0
         ) {
